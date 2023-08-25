@@ -1,0 +1,30 @@
+<html>
+    {% include head.html %}
+<body>
+    {% include header.html %}
+    <div class="content-body">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-10 col-md-offset-1">
+                    <article class="post post-1">
+                        <header class="entry-header">
+                            <h1 class="entry-title">{{ page.title }}</h1>
+                        </header>
+
+                        <div class="entry-content clearfix" style="padding-top: 20px" >
+                            {{ content }}
+                        </div>
+
+                    </article>
+                </main>
+            </div>
+        </div>
+    </div>
+    {% include footer.html %}
+    {% include menu.html %}
+
+    <script src="/assets/js/script.js"></script>
+
+</body>
+
+</html>

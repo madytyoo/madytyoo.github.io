@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <title>{{ page.title }}</title>
+    <meta name="description" content="{{ page.description }}">
+    <link rel="publisher" href="https://plus.google.com/u/0/106503478633817605504">
+
+    <meta property="og:title" content="{{ page.title }}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://primogenre.com{{ page.url }}">
+    <meta property="og:image" content="{{ page.photo }}">
+
+    <meta name="twitter:title" content="{{ page.title }}">
+    <meta name="twitter:card" content="{{ page.description }}">
+    <meta name="twitter:description" content="{{ page.description }}">
+    <link rel="canonical" href="https://primogenre.com{{ page.url }}">
+    {% include head.html %}
+    </head>
+
+<body id="single">
+    {% include header.html %}
+
+    <div class="content-body">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8">
+                    <article class="post post-1">
+                        <header class="entry-header">
+                            <h1 class="entry-title">{{ page.title }}</h1>
+                            <div class="entry-meta">
+                                <span class="post-category"><a href="#">{{ page.category}}</a></span>
+
+                                <span class="post-date"><a href="#"><time class="entry-date" datetime="{{ page.date }}">{{ page.date  | date_to_long_string }}</time></a></span>
+
+                                <span class="comments-link"><a href="https://plus.google.com/u/0/106503478633817605504?rel=author">{{ page.author }}</a></span>
+                            </div>
+                        </header>
+
+                        <div class="entry-content clearfix" style="padding-top: 20px" >
+                            {% include share-bar.html %}
+
+                            {{ content }}
+
+
+                        </div>
+                    </article>
+                </main>
+                <aside class="col-md-4">
+                    <div class="widget widget-recent-posts">
+                        <h3 class="widget-title">Recent Posts</h3>
+
+                        <ul>
+                            {% for post in site.posts limit:5 %}
+                            <li><a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="widget widget-archives">
+                        <h3 class="widget-title">Archives</h3>
+                        {% for post in site.posts %}
+                        {% assign currentDate = post.date | date: "%Y" %}
+                        {% if currentDate != myDate %}
+                        {% unless forloop.first %}</ul>{% endunless %}
+                        <h4>{{ currentDate }}</h4>
+                        <ul>
+                            {% assign myDate = currentDate %}
+                            {% endif %}
+                            <li><a href="{{ post.url }}"><span>{{ post.date | date: "%B %-d, %Y" }}</span> - {{ post.title }}</a></li>
+                            {% if forloop.last %}</ul>{% endif %}
+                        {% endfor %}
+
+
+                    </div>
+
+                    <div class="widget widget-category">
+                        <h3 class="widget-title">Category</h3>
+                        <ul>
+                            <li>
+                                <a href="#">Revisão</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </aside>
+            </div>
+        </div>
+    </div>
+    {% include footer.html %}
+    {% include menu.html %}
+
+    <script src="/assets/js/script.js"></script>
+
+
+</body>
+
+</html>
